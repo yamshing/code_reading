@@ -1,6 +1,6 @@
 # encoding: utf-8
 # red black tree algorithm from rb.h of libc in freebsd
-
+# REF:yamshing.hatenablog.com/entry/2015/09/30/205603
 require('pp')
 
 def comp(a, b)
