@@ -46,11 +46,12 @@ def remove(root, remove_node)
 				 
 				nodep_i = (path_arr_i + 1)
 				 
-				path_arr_i += 2
+				path_arr_i += 1
 				 
 				while path_arr[(path_arr_i)]
 					path_arr[(path_arr_i)][:cmp] = -1
 					path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
+					path_arr_i += 1
 				end
 				 
 				break
@@ -58,7 +59,37 @@ def remove(root, remove_node)
 		end
 		path_arr_i += 1
 	end
-	pp path_arr[nodep_i]
+	path_arr_i -= 1
+	 
+	if comp(path_arr[path_arr_i], remove_node) != 0
+		#remove node is not the last node
+		#swap
+		is_red = path_arr[path_arr_i][:is_red]
+		path_arr[path_arr_i][:is_red] = remove_node[:is_red]
+		path_arr[path_arr_i][:left] = remove_node[:left]
+		path_arr[path_arr_i][:right] = remove_node[:right]
+		remove_node[:is_red] = is_red
+		path_arr[nodep_i] = path_arr[path_arr_i]
+		path_arr[path_arr_i] = remove_node
+		 
+		if nodep_i == 0
+			root = path_arr[nodep_i]
+		else
+			if path_arr[nodep_i - 1][:cmp] < 0
+				path_arr[nodep_i - 1][:left] = path_arr[nodep_i]
+			else
+				path_arr[nodep_i - 1][:right] = path_arr[nodep_i]
+			end
+		end
+	else
+		#remove node is the last node
+	end
+	pp path_arr[path_arr_i]
+	if path_arr[path_arr_i][:is_red]
+		path_arr[path_arr_i - 1][:left] = nil
+		return
+	else
+	end
 end
  
 def insert(root, insert_node)
@@ -234,11 +265,13 @@ end
 root =  {:val=>1, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
 node = {:val=>2, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
 node1 = {:val=>1.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node2 = {:val=>1.8, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
 
 root = insert(root, node)
 root = insert(root, node1)
+root = insert(root, node2)
  
-remove(root,node)
+remove(root,node2)
 
 print_rb(root, 0, '')
  
