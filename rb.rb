@@ -5,7 +5,7 @@ require('pp')
 
 def comp(a, b)
 	 
-	(b[:val] - a[:val]) > 0 ? 1 : -1
+	(b[:val] - a[:val]) > 0 ? 1 : (b[:val] - a[:val]) ? 0 : -1
 	 
 end
 
@@ -27,6 +27,39 @@ def rotate_right(pivot)
 	left
 end
 
+def remove(root, remove_node)
+	path_arr_i = 0
+	nodep_i = 0
+	path_arr = []
+	path_arr[path_arr_i] = root
+	
+	while path_arr[path_arr_i] do
+		# CALL comp TO FLATTEN TREE TO ARRAY
+		cmp = path_arr[path_arr_i][:cmp] = comp(path_arr[path_arr_i], remove_node)
+		 
+		if cmp < 0
+			path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
+		else
+			path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:right]
+			if cmp == 0
+				path_arr[(path_arr_i + 1)][:cmp] = 1
+				 
+				nodep_i = (path_arr_i + 1)
+				 
+				path_arr_i += 2
+				 
+				while path_arr[(path_arr_i)]
+					path_arr[(path_arr_i)][:cmp] = -1
+					path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
+				end
+				 
+				break
+			end
+		end
+		path_arr_i += 1
+	end
+	pp path_arr[nodep_i]
+end
  
 def insert(root, insert_node)
 	path_arr_i = 0
@@ -204,6 +237,9 @@ node1 = {:val=>1.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
 
 root = insert(root, node)
 root = insert(root, node1)
+ 
+remove(root,node)
+
 print_rb(root, 0, '')
  
 @node_arr.each do |n|
