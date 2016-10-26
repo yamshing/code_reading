@@ -5,7 +5,7 @@ require('pp')
 
 def comp(a, b)
 	 
-	(b[:val] - a[:val]) > 0 ? 1 : (b[:val] - a[:val]) ? 0 : -1
+	(b[:val] - a[:val]) > 0 ? 1 : (b[:val] - a[:val] == 0) ? 0 : -1
 	 
 end
 
@@ -42,7 +42,9 @@ def remove(root, remove_node)
 		else
 			path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:right]
 			if cmp == 0
-				path_arr[(path_arr_i + 1)][:cmp] = 1
+				if path_arr[(path_arr_i + 1)]
+					path_arr[(path_arr_i + 1)][:cmp] = 1
+				end
 				 
 				nodep_i = (path_arr_i + 1)
 				 
@@ -82,13 +84,23 @@ def remove(root, remove_node)
 			end
 		end
 	else
+		#test 2
 		#remove node is the last node
+		if remove_node[:left] != nil
+			#test 3
+			p "TODO"
+		elsif nodep_i == 0
+			#only one node
+			root = nil
+			return
+		end
 	end
 	pp path_arr[path_arr_i]
 	if path_arr[path_arr_i][:is_red]
 		path_arr[path_arr_i - 1][:left] = nil
 		return
 	else
+		p "TODO else red"
 	end
 end
  
@@ -124,6 +136,7 @@ def insert(root, insert_node)
 		#WITH cmp WE SET LEFT OR RIGHT
 		cnode = path_arr[path_arr_i]
 		 
+		#p "cnode",cnode
 		if cnode[:cmp] < 0
 			#------------------------------ left child
 			left = path_arr[path_arr_i + 1]
@@ -147,6 +160,7 @@ def insert(root, insert_node)
 		else
 			#------------------------------ right child
 			right = path_arr[path_arr_i + 1]
+			#pp right
 			cnode[:right] =  right
 			left = cnode[:left]
 			 
@@ -262,16 +276,32 @@ end
 #root = insert(root, node9)
 #------------------------------
 			 
-root =  {:val=>1, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
-node = {:val=>2, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-node1 = {:val=>1.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-node2 = {:val=>1.8, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+#remove #1
+#root =  {:val=>1, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
+#node = {:val=>2, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+#node1 = {:val=>1.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+#node2 = {:val=>1.8, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+#root = insert(root, node)
+#root = insert(root, node1)
+#root = insert(root, node2)
+#remove(root,node2)
 
+#test #3
+root =  {:val=>10, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
+node = {:val=>20, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node1 = {:val=>15, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node2 = {:val=>30, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node3 = {:val=>14, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node4 = {:val=>13, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+node5 = {:val=>13.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
 root = insert(root, node)
 root = insert(root, node1)
 root = insert(root, node2)
- 
-remove(root,node2)
+root = insert(root, node3)
+root = insert(root, node4)
+root = insert(root, node5)
+remove(root,node3)
+
 
 print_rb(root, 0, '')
  
