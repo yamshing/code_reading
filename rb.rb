@@ -100,6 +100,7 @@ def remove(root, remove_node)
 		path_arr[path_arr_i - 1][:left] = nil
 		return
 	else
+		 
 		p "TODO else red"
 	end
 end
