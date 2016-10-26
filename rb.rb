@@ -93,22 +93,39 @@ class RedBlackTree
 		else
 			#test 2
 			#remove node is the last node
+			 
 			if remove_node[:left] != nil
 				#test 3
-				p "TODO"
+				remove_node[:left][:is_red] = false
+				 
+				if nodep_i == 0
+					 
+					root = remove_node[:left]
+					 
+				else
+					 
+					if path_arr[nodep_i - 1][:cmp] < 0
+						 
+						path_arr[nodep_i - 1][:left] = remove_node[:left]
+						 
+					else
+						 
+						path_arr[nodep_i - 1][:right] = remove_node[:left]
+						 
+					end
+				end
 			elsif nodep_i == 0
 				#only one node
 				root = nil
 				return
 			end
 		end
-		pp path_arr[path_arr_i]
 		if path_arr[path_arr_i][:is_red]
 			path_arr[path_arr_i - 1][:left] = nil
 			return
-		else
-			p "TODO else red"
 		end
+		# remove node is black
+		p "remove black TODO"
 	end
 	 
 	def insert(insert_node)
