@@ -61,7 +61,9 @@ def test_3
 	rb.insert(node3)
 	rb.insert(node4)
 	rb.insert(node5)
+	 
 	rb.remove(node3)
+	 
 	rb.print_all()
 	#root = insert(root, node1)
 	#root = insert(root, node2)

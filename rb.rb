@@ -125,7 +125,138 @@ class RedBlackTree
 			return
 		end
 		# remove node is black
-		p "remove black TODO"
+		#path_arr[path_arr_i] == remove node
+		 
+		path_arr[path_arr_i] = nil
+		#this is removed node but we must keep left right info
+		 
+		path_arr_i -= 1
+		while(path_arr_i >= 0) do
+			 
+			if path_arr[path_arr_i][:cmp] < 0
+				#left node
+				path_arr[path_arr_i][:left] = path_arr[path_arr_i + 1]
+				return
+				#rbtn_left_set(a_type, a_field, pathp->node, pathp[1].node);
+			else
+				#right node
+				pp "right"
+				pp  path_arr[path_arr_i + 1]
+				path_arr[path_arr_i][:right] = path_arr[path_arr_i + 1]
+				left = path_arr[path_arr_i][:left]
+				 
+				if left[:is_red]
+					#a_type *leftright = rbtn_right_get(a_type, a_field, left);
+					#a_type *leftrightleft = rbtn_left_get(a_type, a_field, leftright);
+					leftright = left[:right] 
+					leftrightleft = leftright[:left]
+
+					if leftrightleft[:is_red]
+						#TODO
+						leftrightleft[:is_red] = false
+						#rbtn_black_set(a_type, a_field, leftrightleft);
+						#
+						#rbtn_rotate_right(a_type, a_field, pathp->node,
+						#		unode);
+						#rbtn_rotate_right(a_type, a_field, pathp->node,
+						#		tnode);
+						#rbtn_right_set(a_type, a_field, unode, tnode);
+						#rbtn_rotate_left(a_type, a_field, unode, tnode);
+					else
+						leftright[:is_red] = true
+						rotate_right(path_arr[path_arr_i])
+						 
+						pp path_arr[path_arr_i]
+						#TODO
+						#rbtn_red_set(a_type, a_field, leftright);
+						#rbtn_rotate_right(a_type, a_field, pathp->node,
+						#		tnode);
+						#rbtn_black_set(a_type, a_field, tnode);
+
+					end
+
+				elsif path_arr[path_arr_i][:is_red]
+					p 'pathp red'
+					leftleft = left[:left] 
+					if leftleft && leftleft[:is_red]
+						p 'leftleft red'
+						#TODO
+					else
+						p 'leftleft red else'
+
+						left[:is_red] = true
+						path_arr[path_arr_i][:is_red] = false
+						return
+					#rbtn_red_set(a_type, a_field, left);
+					#rbtn_black_set(a_type, a_field, pathp->node);
+
+					end
+					#if (rbtn_red_get(a_type, a_field, leftleft)) {
+					#/*        ||                                      */
+					#/*      pathp(r)                                  */
+					#/*     /        ╲╲                               */
+					#/*   (b)        (b)                               */
+					#/*   /                                            */
+					#/* (r)                                            */
+					#a_type *tnode;
+					#rbtn_black_set(a_type, a_field, pathp->node);
+					# 
+					#/*        ||                                      */
+					#/*      pathp(b)                                  */
+					#/*     /        ╲╲                               */
+					#/*   (b)        (b)                               */
+					#/*   /                                            */
+					#/* (r)                                            */
+					#   
+					#rbtn_red_set(a_type, a_field, left);
+					# 
+					#/*        ||                                      */
+					#/*      pathp(b)                                  */
+					#/*     /        ╲╲                               */
+					#/*   (r)        (b)                               */
+					#/*   /                                            */
+					#/* (r)                                           */
+					#rbtn_black_set(a_type, a_field, leftleft);
+					#/*        ||                                      */
+					#/*      pathp(b)                                  */
+					#/*     /        ╲╲                               */
+					#/*   (r)        (b)                               */
+					#/*   /                                            */
+					#/* (b)                                           */
+					# 
+					#rbtn_rotate_right(a_type, a_field, pathp->node, tnode);
+					#/*          (r)                                      */
+					#/*        /    ╲╲                                   */
+					#/*      (b)    pathp(b)                                  */
+					#/*               ╲╲                               */
+					#/*               (b)                               */
+					#/*                                               */
+					#/*                                            */
+					# 
+					#/* Balance restored, but rotation modified        */
+					#/* subtree root.                                  */
+					#assert((uintptr_t)pathp > (uintptr_t)path);
+					#if (pathp[-1].cmp < 0) {
+					#	rbtn_left_set(a_type, a_field, pathp[-1].node,
+					#			tnode);
+					#} else {
+					#	rbtn_right_set(a_type, a_field, pathp[-1].node,
+					#			tnode);
+					#}
+					#return;
+				else
+					p 'pathp red else'
+					#TODO
+				end
+				 
+				#if (rbtn_red_get(a_type, a_field, left)) {
+				#rbtn_right_set(a_type, a_field, pathp->node, pathp[1].node);
+			end
+			 
+			path_arr_i -= 1
+		end
+		 
+		 
 	end
 	 
 	def insert(insert_node)
