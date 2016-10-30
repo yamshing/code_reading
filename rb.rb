@@ -140,8 +140,8 @@ class RedBlackTree
 				#rbtn_left_set(a_type, a_field, pathp->node, pathp[1].node);
 			else
 				#right node
-				pp "right"
-				pp  path_arr[path_arr_i + 1]
+				#pp "right"
+				#pp  path_arr[path_arr_i + 1]
 				path_arr[path_arr_i][:right] = path_arr[path_arr_i + 1]
 				left = path_arr[path_arr_i][:left]
 				 
@@ -166,7 +166,7 @@ class RedBlackTree
 						leftright[:is_red] = true
 						rotate_right(path_arr[path_arr_i])
 						 
-						pp path_arr[path_arr_i]
+						#pp path_arr[path_arr_i]
 						#TODO
 						#rbtn_red_set(a_type, a_field, leftright);
 						#rbtn_rotate_right(a_type, a_field, pathp->node,
@@ -176,13 +176,13 @@ class RedBlackTree
 					end
 
 				elsif path_arr[path_arr_i][:is_red]
-					p 'pathp red'
+					#p 'pathp red'
 					leftleft = left[:left] 
 					if leftleft && leftleft[:is_red]
-						p 'leftleft red'
+						#p 'leftleft red'
 						#TODO
 					else
-						p 'leftleft red else'
+						#p 'leftleft red else'
 
 						left[:is_red] = true
 						path_arr[path_arr_i][:is_red] = false
@@ -245,7 +245,7 @@ class RedBlackTree
 					#}
 					#return;
 				else
-					p 'pathp red else'
+					#p 'pathp red else'
 					#TODO
 				end
 				 
@@ -298,10 +298,11 @@ class RedBlackTree
 				cnode[:left] = left
 				 
 				if left[:is_red] 
+
 					if left[:left] && left[:left][:is_red]
 						 
 						left[:left][:is_red] = false
-						new_root = rotate_right(path_arr[path_arr_i])
+						new_root = rotate_right(cnode)
 						cnode = new_root
 						 
 					end
@@ -365,7 +366,15 @@ class RedBlackTree
 		"#{node[:val]}#{color}"
 	end
 	 
+	def to_s()
+		@node_arr = []
+		print_rb(@root,0,'')
+		@node_arr.to_s()
+	end
+	 
 	def print_all()
+		 
+		@node_arr = []
 		 
 		print_rb(@root,0,'')
 
@@ -375,6 +384,7 @@ class RedBlackTree
 	end
 	 
 	def print_rb(root, level, pos)
+		 
 		node_str = get_node_color_str(root, pos)
 		 
 		if level == 0
