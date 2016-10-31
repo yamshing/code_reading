@@ -11,7 +11,7 @@ class RedBlackTree
 	end
 	def comp(a, b)
 		 
-		(b[:val] - a[:val]) > 0 ? 1 : (b[:val] - a[:val] == 0) ? 0 : -1
+		(b[:node][:val] - a[:node][:val]) > 0 ? 1 : (b[:node][:val] - a[:node][:val] == 0) ? 0 : -1
 		 
 	end
 
@@ -267,7 +267,7 @@ class RedBlackTree
 		while path_arr[path_arr_i] do
 			 
 			# CALL comp TO FLATTEN TREE TO ARRAY
-			cmp = path_arr[path_arr_i][:cmp] = comp(path_arr[path_arr_i], insert_node)
+			cmp = path_arr[path_arr_i][:node][:cmp] = comp(path_arr[path_arr_i], insert_node)
 			 
 			if cmp < 0
 				 
@@ -292,16 +292,16 @@ class RedBlackTree
 			cnode = path_arr[path_arr_i]
 			 
 			#p "cnode",cnode
-			if cnode[:cmp] < 0
+			if cnode[:node][:cmp] < 0
 				#------------------------------ left child
 				left = path_arr[path_arr_i + 1]
 				cnode[:left] = left
 				 
-				if left[:is_red] 
+				if left[:node][:is_red] 
 
-					if left[:left] && left[:left][:is_red]
+					if left[:left] && left[:left][:node][:is_red]
 						 
-						left[:left][:is_red] = false
+						left[:left][:node][:is_red] = false
 						new_root = rotate_right(cnode)
 						cnode = new_root
 						 
@@ -320,18 +320,18 @@ class RedBlackTree
 				cnode[:right] =  right
 				left = cnode[:left]
 				 
-				if right[:is_red]
+				if right[:node][:is_red]
 					 
-					if left && left[:is_red]
-						right[:is_red] = false
-						left[:is_red] = false
-						cnode[:is_red] = true
+					if left && left[:node][:is_red]
+						right[:node][:is_red] = false
+						left[:node][:is_red] = false
+						cnode[:node][:is_red] = true
 				 
 					else
-						cnode_is_red = cnode[:is_red]
+						cnode_is_red = cnode[:node][:is_red]
 						new_root = rotate_left(path_arr[path_arr_i])
-						new_root[:is_red] = cnode_is_red
-						cnode[:is_red] = true
+						new_root[:node][:is_red] = cnode_is_red
+						cnode[:node][:is_red] = true
 						cnode = new_root
 						 
 					end
@@ -346,7 +346,7 @@ class RedBlackTree
 			path_arr_i -= 1
 		end
 		 
-		path_arr[0][:is_red] = false 
+		path_arr[0][:node][:is_red] = false 
 		 
 		@root = path_arr[0]
 		 
@@ -359,11 +359,11 @@ class RedBlackTree
 
 	def get_node_color_str(node,  pos)
 		color = '○ '
-		if node[:is_red]
+		if node[:node][:is_red]
 			color = '●  '
 		end
 		
-		"#{node[:val]}#{color}"
+		"#{node[:node][:val]}#{color}"
 	end
 	 
 	def to_s()
@@ -399,13 +399,13 @@ class RedBlackTree
 
 		if root[:left]
 			 
-			left_node_str = print_rb(root[:left], level + 1, "#{root[:val]}-l")
+			left_node_str = print_rb(root[:left], level + 1, "#{root[:node][:val]}-l")
 			 
 		end
 		 
 		if root[:right]
 			 
-			right_node_str = print_rb(root[:right], level + 1, "#{root[:val]}-r")
+			right_node_str = print_rb(root[:right], level + 1, "#{root[:node][:val]}-r")
 			 
 		end
 		

@@ -9,9 +9,9 @@ class TestSample < Test::Unit::TestCase
 	end
 	 
 	def test_insert_1
-		root = {:val=>0, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
-		node1 = {:val=>5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node2 = {:val=>10, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+		root = {:node=> {:val=>0,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		node1 = {:node=> {:val=>5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node2 = {:node=> {:val=>10,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
 
 		rb = RedBlackTree.new(root)
 		rb.insert(node1)
@@ -22,11 +22,11 @@ class TestSample < Test::Unit::TestCase
 		 
 	end
 	def test_insert_2
-
-		root = {:val=>10, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
-		node1 = {:val=>5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node2 = {:val=>0, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-
+		 
+		root = {:node=> {:val=>10,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		node1 = {:node=> {:val=>5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node2 = {:node=> {:val=>0,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		 
 		rb = RedBlackTree.new(root)
 		rb.insert(node1)
 		rb.insert(node2)
@@ -38,16 +38,28 @@ class TestSample < Test::Unit::TestCase
 
 	def test_insert_3
 		 
-		root =  {:val=>0, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0}
-		node1 = {:val=>10, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node2 = {:val=>5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node3 = {:val=>6, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node4 = {:val=>7, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node5 = {:val=>8, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node6 = {:val=>9.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node7 = {:val=>9.7, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node8 = {:val=>3, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
-		node9 = {:val=>8.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0}
+		#root =  {:val=>0, :left=>nil, :right=>nil, :is_red=>false, :cmp=>0 , :node=>nil}
+		#node1 = {:val=>10, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0 , :node=>nil}
+		#node2 = {:val=>5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0  , :node=>nil}
+		#node3 = {:val=>6, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0  , :node=>nil}
+		#node4 = {:val=>7, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0  , :node=>nil}
+		#node5 = {:val=>8, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0  , :node=>nil}
+		#node6 = {:val=>9.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0, :node=>nil}
+		#node7 = {:val=>9.7, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0, :node=>nil}
+		#node8 = {:val=>3, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0  , :node=>nil}
+		#node9 = {:val=>8.5, :left=>nil, :right=>nil, :is_red=>true, :cmp=>0, :node=>nil}
+		 
+		root = {:node=> {:val=>0,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		node1 = {:node=> {:val=>10,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node2 = {:node=> {:val=>5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node3 = {:node=> {:val=>6,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node4 = {:node=> {:val=>7,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node5 = {:node=> {:val=>8,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node6 = {:node=> {:val=>9.5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node7 = {:node=> {:val=>9.7,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node8 = {:node=> {:val=>3,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node9 = {:node=> {:val=>8.5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		 
 
 		rb = RedBlackTree.new(root)
 		 
