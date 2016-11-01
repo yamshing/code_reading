@@ -68,6 +68,8 @@ class RedBlackTree
 			end
 			path_arr_i += 1
 		end
+		#pp 'path_arr', path_arr
+		 
 		path_arr_i -= 1
 		 
 		if comp(path_arr[path_arr_i], remove_node) != 0
@@ -132,17 +134,13 @@ class RedBlackTree
 		end
 		 
 		# remove node is black
-		#path_arr[path_arr_i] == remove node
-		 
 		#pp 'remove node', path_arr[path_arr_i]
-		path_arr[path_arr_i][:node] = nil
+		path_arr[path_arr_i] = nil
 		#this is removed node but we must keep left right info
 		 
 		path_arr_i -= 1
-		#pp 'path_arr_i', path_arr_i
-		#pp 'path_arr', path_arr
 
-		while(path_arr_i >= 0) do
+		while(path_arr_i > 0) do
 			 
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
@@ -151,8 +149,7 @@ class RedBlackTree
 				#rbtn_left_set(a_type, a_field, pathp->node, pathp[1].node);
 			else
 
-				#test_remove_1
-				# 
+				
 				#right node
 				#pp "right"
 				#pp 'patharr', path_arr[path_arr_i] 
@@ -273,8 +270,10 @@ class RedBlackTree
 						#TODO
 						 
 					else
-						pp 'leftleft red else'
+						#pp 'leftleft red else'
 						left[:node][:is_red] = true
+
+						#pp path_arr
 					end
 					#a_type *leftleft = rbtn_left_get(a_type, a_field, left);
 					#if (rbtn_red_get(a_type, a_field, leftleft)) {
@@ -317,7 +316,6 @@ class RedBlackTree
 			 
 			path_arr_i -= 1
 		end
-		#pp "patharr", path_arr
 		 
 		 
 	end
@@ -421,6 +419,7 @@ class RedBlackTree
 	#------------------------------
 
 	def get_node_color_str(node,  pos)
+		 
 		if !node[:node]
 			return ''
 		end
@@ -464,18 +463,16 @@ class RedBlackTree
 		left_node_str =  '-'
 		right_node_str = '-'
 
-		if root[:node]
-			if root[:left]
-				 
-				left_node_str = print_rb(root[:left], level + 1, "#{root[:node][:val]}-l")
-				 
-			end
+		if root[:left]
 			 
-			if root[:right]
-				 
-				right_node_str = print_rb(root[:right], level + 1, "#{root[:node][:val]}-r")
-				 
-			end
+			left_node_str = print_rb(root[:left], level + 1, "")
+			 
+		end
+		 
+		if root[:right]
+			 
+			right_node_str = print_rb(root[:right], level + 1, "#")
+			 
 		end
 		
 		@node_arr[level + 1] ||= []
