@@ -42,23 +42,23 @@ class RedBlackTree
 		
 		while path_arr[path_arr_i] do
 			# CALL comp TO FLATTEN TREE TO ARRAY
-			cmp = path_arr[path_arr_i][:cmp] = comp(path_arr[path_arr_i], remove_node)
+			cmp = path_arr[path_arr_i][:node][:cmp] = comp(path_arr[path_arr_i], remove_node)
 			 
 			if cmp < 0
 				path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
 			else
 				path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:right]
 				if cmp == 0
-					if path_arr[(path_arr_i + 1)]
-						path_arr[(path_arr_i + 1)][:cmp] = 1
+					if path_arr[(path_arr_i)]
+						path_arr[(path_arr_i)][:node][:cmp] = 1
 					end
 					 
-					nodep_i = (path_arr_i + 1)
+					nodep_i = (path_arr_i)
 					 
 					path_arr_i += 1
 					 
 					while path_arr[(path_arr_i)]
-						path_arr[(path_arr_i)][:cmp] = -1
+						path_arr[(path_arr_i)][:node][:cmp] = -1
 						path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
 						path_arr_i += 1
 					end
@@ -73,30 +73,29 @@ class RedBlackTree
 		if comp(path_arr[path_arr_i], remove_node) != 0
 			#remove node is not the last node
 			#swap
-			is_red = path_arr[path_arr_i][:is_red]
-			path_arr[path_arr_i][:is_red] = remove_node[:is_red]
+			is_red = path_arr[path_arr_i][:node][:is_red]
+			path_arr[path_arr_i][:node][:is_red] = remove_node[:node][:is_red]
 			path_arr[path_arr_i][:left] = remove_node[:left]
 			path_arr[path_arr_i][:right] = remove_node[:right]
-			remove_node[:is_red] = is_red
+			remove_node[:node][:is_red] = is_red
 			path_arr[nodep_i] = path_arr[path_arr_i]
 			path_arr[path_arr_i] = remove_node
 			 
 			if nodep_i == 0
 				root = path_arr[nodep_i]
 			else
-				if path_arr[nodep_i - 1][:cmp] < 0
+				if path_arr[nodep_i - 1][:node][:cmp] < 0
 					path_arr[nodep_i - 1][:left] = path_arr[nodep_i]
 				else
 					path_arr[nodep_i - 1][:right] = path_arr[nodep_i]
 				end
 			end
 		else
-			#test 2
 			#remove node is the last node
 			 
 			if remove_node[:left] != nil
-				#test 3
-				remove_node[:left][:is_red] = false
+				 
+				remove_node[:left][:node][:is_red] = false
 				 
 				if nodep_i == 0
 					 
@@ -104,13 +103,19 @@ class RedBlackTree
 					 
 				else
 					 
-					if path_arr[nodep_i - 1][:cmp] < 0
+					if path_arr[nodep_i - 1][:node][:cmp] < 0
 						 
 						path_arr[nodep_i - 1][:left] = remove_node[:left]
 						 
 					else
 						 
+						#test_remove_1
 						path_arr[nodep_i - 1][:right] = remove_node[:left]
+
+						#pp 'remove node'
+						#pp remove_node
+						#pp '------------------------------'
+						#pp path_arr[nodep_i - 1]
 						 
 					end
 				end
@@ -120,40 +125,55 @@ class RedBlackTree
 				return
 			end
 		end
-		if path_arr[path_arr_i][:is_red]
+		 
+		if path_arr[path_arr_i][:node][:is_red]
 			path_arr[path_arr_i - 1][:left] = nil
 			return
 		end
+		 
 		# remove node is black
 		#path_arr[path_arr_i] == remove node
 		 
-		path_arr[path_arr_i] = nil
+		#pp 'remove node', path_arr[path_arr_i]
+		path_arr[path_arr_i][:node] = nil
 		#this is removed node but we must keep left right info
 		 
 		path_arr_i -= 1
+		#pp 'path_arr_i', path_arr_i
+		#pp 'path_arr', path_arr
+
 		while(path_arr_i >= 0) do
 			 
-			if path_arr[path_arr_i][:cmp] < 0
+			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
 				path_arr[path_arr_i][:left] = path_arr[path_arr_i + 1]
 				return
 				#rbtn_left_set(a_type, a_field, pathp->node, pathp[1].node);
 			else
+
+				#test_remove_1
+				# 
 				#right node
 				#pp "right"
-				#pp  path_arr[path_arr_i + 1]
+				#pp 'patharr', path_arr[path_arr_i] 
+				#pp 'patharr + 1', path_arr[path_arr_i + 1]
+				 
+				#l344
 				path_arr[path_arr_i][:right] = path_arr[path_arr_i + 1]
+
+				#pp 'after patharr', path_arr[path_arr_i] 
+
 				left = path_arr[path_arr_i][:left]
 				 
-				if left[:is_red]
+				if left[:node][:is_red]
 					#a_type *leftright = rbtn_right_get(a_type, a_field, left);
 					#a_type *leftrightleft = rbtn_left_get(a_type, a_field, leftright);
 					leftright = left[:right] 
 					leftrightleft = leftright[:left]
 
-					if leftrightleft[:is_red]
+					if leftrightleft[:node][:is_red]
 						#TODO
-						leftrightleft[:is_red] = false
+						leftrightleft[:node][:is_red] = false
 						#rbtn_black_set(a_type, a_field, leftrightleft);
 						#
 						#rbtn_rotate_right(a_type, a_field, pathp->node,
@@ -163,7 +183,7 @@ class RedBlackTree
 						#rbtn_right_set(a_type, a_field, unode, tnode);
 						#rbtn_rotate_left(a_type, a_field, unode, tnode);
 					else
-						leftright[:is_red] = true
+						leftright[:node][:is_red] = true
 						rotate_right(path_arr[path_arr_i])
 						 
 						#pp path_arr[path_arr_i]
@@ -175,17 +195,17 @@ class RedBlackTree
 
 					end
 
-				elsif path_arr[path_arr_i][:is_red]
+				elsif path_arr[path_arr_i][:node][:is_red]
 					#p 'pathp red'
 					leftleft = left[:left] 
-					if leftleft && leftleft[:is_red]
+					if leftleft && leftleft[:node][:is_red]
 						#p 'leftleft red'
 						#TODO
 					else
 						#p 'leftleft red else'
 
-						left[:is_red] = true
-						path_arr[path_arr_i][:is_red] = false
+						left[:node][:is_red] = true
+						path_arr[path_arr_i][:node][:is_red] = false
 						return
 					#rbtn_red_set(a_type, a_field, left);
 					#rbtn_black_set(a_type, a_field, pathp->node);
@@ -246,6 +266,7 @@ class RedBlackTree
 					#return;
 				else
 					#p 'pathp red else'
+					#l 507
 					#TODO
 				end
 				 
@@ -255,6 +276,7 @@ class RedBlackTree
 			 
 			path_arr_i -= 1
 		end
+		#pp "patharr", path_arr
 		 
 		 
 	end
@@ -358,6 +380,10 @@ class RedBlackTree
 	#------------------------------
 
 	def get_node_color_str(node,  pos)
+		if !node[:node]
+			return ''
+		end
+
 		color = '○ '
 		if node[:node][:is_red]
 			color = '●  '
@@ -397,16 +423,18 @@ class RedBlackTree
 		left_node_str =  '-'
 		right_node_str = '-'
 
-		if root[:left]
+		if root[:node]
+			if root[:left]
+				 
+				left_node_str = print_rb(root[:left], level + 1, "#{root[:node][:val]}-l")
+				 
+			end
 			 
-			left_node_str = print_rb(root[:left], level + 1, "#{root[:node][:val]}-l")
-			 
-		end
-		 
-		if root[:right]
-			 
-			right_node_str = print_rb(root[:right], level + 1, "#{root[:node][:val]}-r")
-			 
+			if root[:right]
+				 
+				right_node_str = print_rb(root[:right], level + 1, "#{root[:node][:val]}-r")
+				 
+			end
 		end
 		
 		@node_arr[level + 1] ||= []
