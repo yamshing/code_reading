@@ -161,7 +161,6 @@ class RedBlackTree
 				#l344
 				path_arr[path_arr_i][:right] = path_arr[path_arr_i + 1]
 
-				#pp 'after patharr', path_arr[path_arr_i] 
 
 				left = path_arr[path_arr_i][:left]
 				 
@@ -172,6 +171,7 @@ class RedBlackTree
 					leftrightleft = leftright[:left]
 
 					if leftrightleft[:node][:is_red]
+							
 						#TODO
 						leftrightleft[:node][:is_red] = false
 						#rbtn_black_set(a_type, a_field, leftrightleft);
@@ -265,9 +265,50 @@ class RedBlackTree
 					#}
 					#return;
 				else
-					#p 'pathp red else'
+					#pp 'pathp red else------------------------------'
+					#pp path_arr
 					#l 507
-					#TODO
+					leftleft = left[:left]
+					if leftleft && leftleft[:node][:is_red]
+						#TODO
+						 
+					else
+						pp 'leftleft red else'
+						left[:node][:is_red] = true
+					end
+					#a_type *leftleft = rbtn_left_get(a_type, a_field, left);
+					#if (rbtn_red_get(a_type, a_field, leftleft)) {
+					#	/*               ||                               */
+					#	/*             pathp(b)                           */
+					#	/*            /                                 */
+					#	/*          (b)        (b)                        */
+					#	/*          /                                     */
+					#	/*        (r)                                     */
+					#	a_type *tnode;
+					#	rbtn_black_set(a_type, a_field, leftleft);
+					#	rbtn_rotate_right(a_type, a_field, pathp->node,
+					#			tnode);
+					#	/* Balance restored, but rotation modified        */
+					#	/* subtree root, which may actually be the tree   */
+					#	/* root.                                          */
+					#	if (pathp == path) {
+					#		/* Set root. */
+					#		rbtree->rbt_root = tnode;
+					#	} else {
+					#		if (pathp[-1].cmp < 0) {
+					#			rbtn_left_set(a_type, a_field,
+					#					pathp[-1].node, tnode);
+					#		}else{
+
+					#			rbtn_right_set(a_type, a_field,
+					#					pathp[-1].node, tnode);
+
+					#		}
+					#	}
+
+					#	return;
+					#}
+
 				end
 				 
 				#if (rbtn_red_get(a_type, a_field, left)) {
