@@ -55,9 +55,10 @@ class RedBlackTree
 					 
 					nodep_i = (path_arr_i)
 					 
-					path_arr_i += 1
+					#path_arr_i += 1
 					 
 					while path_arr[(path_arr_i)]
+						pp "in while",path_arr[(path_arr_i)]
 						path_arr[(path_arr_i)][:node][:cmp] = -1
 						path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
 						path_arr_i += 1
@@ -71,6 +72,8 @@ class RedBlackTree
 		#pp 'path_arr', path_arr
 		 
 		path_arr_i -= 1
+		pp "path_arr[path_arr_i]",path_arr[path_arr_i]
+		pp "remove node", remove_node
 		 
 		if comp(path_arr[path_arr_i], remove_node) != 0
 			#remove node is not the last node
@@ -135,17 +138,54 @@ class RedBlackTree
 		 
 		# remove node is black
 		#pp 'remove node', path_arr[path_arr_i]
-		path_arr[path_arr_i] = nil
-		#this is removed node but we must keep left right info
 		 
+		pp "path_arr", path_arr[path_arr_i]
+		 
+		path_arr[path_arr_i] = nil
+
+		#this is removed node but we must keep left right info
+
 		path_arr_i -= 1
+
 
 		while(path_arr_i > 0) do
 			 
+			 
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
+				pp "left node removed"
 			else
 				#right node
+				pp "right node removed"
+				pp "path arr i",path_arr[path_arr_i]
+				pp "path arr i + 1",path_arr[path_arr_i + 1]
+				 
+				path_arr[path_arr_i][:right] =  path_arr[path_arr_i + 1]
+				 
+				left = path_arr[path_arr_i][:left]
+				 
+				pp "left node", left
+				if left[:node][:is_red]
+					pp "left is red"
+				elsif path_arr[path_arr_i][:node][:is_red]
+					pp "left is not red i node is red"
+					leftleft = left[:left]
+					if leftleft && leftleft[:node][:is_red] 
+						pp "leftleft is red", leftleft
+					else
+						pp "leftleft is not red", leftleft
+						#rbtn_red_set(a_type, a_field, left);
+						#rbtn_black_set(a_type, a_field, pathp->node);
+						 
+						left[:node][:is_red] = true
+						path_arr[path_arr_i][:node][:is_red] = false
+					end
+					 
+				else
+					pp "left is not red i node is not red"
+					 
+				end
+				 
 			end
 			 
 			path_arr_i -= 1
