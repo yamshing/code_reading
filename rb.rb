@@ -76,7 +76,7 @@ class RedBlackTree
 		#pp "remove node", remove_node
 		 
 		if comp(path_arr[path_arr_i], remove_node) != 0
-			#remove node is not the last node
+			# remove node is not the last node
 			#swap
 			is_red = path_arr[path_arr_i][:node][:is_red]
 			path_arr[path_arr_i][:node][:is_red] = remove_node[:node][:is_red]
@@ -135,18 +135,13 @@ class RedBlackTree
 			path_arr[path_arr_i - 1][:left] = nil
 			return
 		end
-		 
 		# remove node is black
 		#pp 'remove node', path_arr[path_arr_i]
-		 
 		#pp "path_arr", path_arr[path_arr_i]
 		 
 		path_arr[path_arr_i] = nil
 
-		#this is removed node but we must keep left right info
-
 		path_arr_i -= 1
-
 
 		while(path_arr_i >= 0) do
 			 
@@ -157,6 +152,7 @@ class RedBlackTree
 				 
 				if path_arr[path_arr_i][:node][:is_red]
 					pp "path is red"
+					#TODO
 				else
 					pp "path is not red"
 					right = path_arr[path_arr_i][:right]
@@ -164,17 +160,13 @@ class RedBlackTree
 					 
 					if rightleft && rightleft[:node][:is_red]
 						pp "rightleft is red"
+						#TODO
 					else
+						#done
 						pp "rightleft is not red"
 						path_arr[path_arr_i][:node][:is_red] = true
 						new_root = rotate_left(path_arr[path_arr_i])
 						path_arr[path_arr_i] = new_root
-						#a_type *tnode;
-						#
-						#rbtn_red_set(a_type, a_field, pathp->node);
-						#rbtn_rotate_left(a_type, a_field, pathp->node,
-						#		tnode);
-						#pathp->node = tnode;
 					end
 					
 				end
@@ -191,32 +183,33 @@ class RedBlackTree
 				pp "left node", left
 				if left[:node][:is_red]
 					pp "left is red"
+					#TODO
 				elsif path_arr[path_arr_i][:node][:is_red]
 					pp "left is not red i node is red"
 					leftleft = left[:left]
 					if leftleft && leftleft[:node][:is_red] 
 						pp "leftleft is red"
+						#TODO
 					else
 						#------------------------------
 						#rbtn_red_set(a_type, a_field, left);
 						#rbtn_black_set(a_type, a_field, pathp->node);
 						 
+						#done 
 						left[:node][:is_red] = true
 						path_arr[path_arr_i][:node][:is_red] = false
 					end
 					 
 				else
+					#done
 					pp "left is not red i node is not red"
 					left[:node][:is_red] = true
 				end
-				 
 			end
 			 
 			path_arr_i -= 1
 			 
 		end
-		 
-		 
 	end
 	 
 	def insert(insert_node)
