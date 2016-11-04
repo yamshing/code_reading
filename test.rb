@@ -104,6 +104,7 @@ class TestSample < Test::Unit::TestCase
 		assert_equal "[[\"1.5○ \"], [\"1○ 1.8○ \"], [\"--\", \"--\"]]", rb.to_s()
 		 
 	end
+	 
 	def test_remove_2
 		 
 		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
@@ -122,9 +123,9 @@ class TestSample < Test::Unit::TestCase
 		 
 		rb.remove(node2)
 		
-		rb.print_all()
+		#rb.print_all()
 
-		#assert_equal "[[\"1.5○ \"], [\"1○ 1.8○ \"], [\"--\", \"--\"]]", rb.to_s()
+		assert_equal "[[\"3.5○ \"], [\"2●  4○ \"], [\"1○ 2.5○ \", \"--\"], [\"--\", \"--\"]]", rb.to_s()
 		 
 	end
 end
