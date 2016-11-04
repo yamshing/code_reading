@@ -139,7 +139,7 @@ class RedBlackTree
 		# remove node is black
 		#pp 'remove node', path_arr[path_arr_i]
 		 
-		pp "path_arr", path_arr[path_arr_i]
+		#pp "path_arr", path_arr[path_arr_i]
 		 
 		path_arr[path_arr_i] = nil
 
@@ -148,17 +148,41 @@ class RedBlackTree
 		path_arr_i -= 1
 
 
-		while(path_arr_i > 0) do
-			 
+		while(path_arr_i >= 0) do
 			 
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
 				pp "left node removed"
+				path_arr[path_arr_i][:left] =  path_arr[path_arr_i + 1]
+				 
+				if path_arr[path_arr_i][:node][:is_red]
+					pp "path is red"
+				else
+					pp "path is not red"
+					right = path_arr[path_arr_i][:right]
+					rightleft = right[:left] 
+					 
+					if rightleft && rightleft[:node][:is_red]
+						pp "rightleft is red"
+					else
+						pp "rightleft is not red"
+						path_arr[path_arr_i][:node][:is_red] = true
+						new_root = rotate_left(path_arr[path_arr_i])
+						path_arr[path_arr_i] = new_root
+						#a_type *tnode;
+						#
+						#rbtn_red_set(a_type, a_field, pathp->node);
+						#rbtn_rotate_left(a_type, a_field, pathp->node,
+						#		tnode);
+						#pathp->node = tnode;
+					end
+					
+				end
 			else
 				#right node
 				pp "right node removed"
-				pp "path arr i",path_arr[path_arr_i]
-				pp "path arr i + 1",path_arr[path_arr_i + 1]
+				#pp "path arr i",path_arr[path_arr_i]
+				#pp "path arr i + 1",path_arr[path_arr_i + 1]
 				 
 				path_arr[path_arr_i][:right] =  path_arr[path_arr_i + 1]
 				 
@@ -171,9 +195,9 @@ class RedBlackTree
 					pp "left is not red i node is red"
 					leftleft = left[:left]
 					if leftleft && leftleft[:node][:is_red] 
-						pp "leftleft is red", leftleft
+						pp "leftleft is red"
 					else
-						pp "leftleft is not red", leftleft
+						#------------------------------
 						#rbtn_red_set(a_type, a_field, left);
 						#rbtn_black_set(a_type, a_field, pathp->node);
 						 
@@ -183,7 +207,7 @@ class RedBlackTree
 					 
 				else
 					pp "left is not red i node is not red"
-					 
+					left[:node][:is_red] = true
 				end
 				 
 			end

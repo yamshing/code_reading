@@ -128,6 +128,30 @@ class TestSample < Test::Unit::TestCase
 		assert_equal "[[\"3.5○ \"], [\"2●  4○ \"], [\"1○ 2.5○ \", \"--\"], [\"--\", \"--\"]]", rb.to_s()
 		 
 	end
+	def test_remove_3
+		 
+		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		node1 = {:node=> {:val=>2,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node3 = {:node=> {:val=>4,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node4 = {:node=> {:val=>3.5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node5 = {:node=> {:val=>2.5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node6 = {:node=> {:val=>6,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		node7 = {:node=> {:val=>7,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+		 
+		rb = RedBlackTree.new(root)
+		rb.insert(node1)
+		rb.insert(node3)
+		rb.insert(node4)
+		rb.insert(node5)
+		rb.insert(node6)
+		rb.insert(node7)
+		 
+		rb.remove(node3)
+		
+		#rb.print_all()
+		assert_equal "[[\"3.5○ \"], [\"2●  7○ \"], [\"1○ 2.5○ \", \"6●  -\"], [\"--\", \"--\", \"--\"]]", rb.to_s()
+		 
+	end
 end
 
 
