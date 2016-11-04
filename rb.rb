@@ -152,7 +152,33 @@ class RedBlackTree
 				 
 				if path_arr[path_arr_i][:node][:is_red]
 					pp "path is red"
-					#TODO
+					#a_type *right = rbtn_right_get(a_type, a_field, pathp->node);
+					#a_type *rightleft = rbtn_left_get(a_type, a_field, right);
+					#a_type *tnode;
+					right = path_arr[path_arr_i][:right]
+					rightleft = right[:left]
+					tnode = nil
+
+					#if (rbtn_red_get(a_type, a_field, rightleft)) {
+					if rightleft && rightleft[:node][:is_red]
+						pp "rightleft is red"
+						#TODO
+					else
+						pp "rightleft is not red"
+						#rbtn_rotate_left(a_type, a_field, pathp->node,
+						#	tnode);
+						tnode = rotate_left(path_arr[path_arr_i])
+
+					end
+					if path_arr[path_arr_i - 1][:node][:cmp] < 0
+						pp "-1 cmp < 0"
+						path_arr[path_arr_i - 1][:left] = tnode
+					else
+						pp "-1 cmp > 0"
+						path_arr[path_arr_i - 1][:right] = tnode
+					end
+					return
+					 
 				else
 					pp "path is not red"
 					right = path_arr[path_arr_i][:right]
