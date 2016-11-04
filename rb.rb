@@ -58,7 +58,7 @@ class RedBlackTree
 					#path_arr_i += 1
 					 
 					while path_arr[(path_arr_i)]
-						pp "in while",path_arr[(path_arr_i)]
+						#pp "in while",path_arr[(path_arr_i)]
 						path_arr[(path_arr_i)][:node][:cmp] = -1
 						path_arr[(path_arr_i + 1)] = path_arr[path_arr_i][:left]
 						path_arr_i += 1
@@ -72,8 +72,8 @@ class RedBlackTree
 		#pp 'path_arr', path_arr
 		 
 		path_arr_i -= 1
-		pp "path_arr[path_arr_i]",path_arr[path_arr_i]
-		pp "remove node", remove_node
+		#pp "path_arr[path_arr_i]",path_arr[path_arr_i]
+		#pp "remove node", remove_node
 		 
 		if comp(path_arr[path_arr_i], remove_node) != 0
 			#remove node is not the last node
