@@ -172,9 +172,9 @@ class TestSample < Test::Unit::TestCase
 			rb.insert(node)
 		end
 		 
-		#rb.remove(nodes[6])
-		rb.print_all()
-		#assert_equal "", rb.to_s()
+		rb.remove(nodes[6])
+		#rb.print_all()
+		assert_equal "[[\"4○ \"], [\"2○ 6○ \"], [\"1.8○ 3○ \", \"5○ 7○ \"], [\"1●  -\", \"--\", \"--\", \"--\"], [\"--\"]]", rb.to_s()
 		 
 	end
 end
