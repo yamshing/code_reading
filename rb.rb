@@ -184,8 +184,32 @@ class RedBlackTree
 					rightleft = right[:left] 
 					 
 					if rightleft && rightleft[:node][:is_red]
-						pp "rightleft is red"
-						#TODO
+						pp "rightleft is red" #test remove_6
+						 
+						tnode = nil
+						rightleft[:node][:is_red] = false
+						tnode = rotate_right(path_arr[path_arr_i][:right])
+						path_arr[path_arr_i][:right] = tnode
+						tnode = rotate_left(path_arr[path_arr_i])
+						 
+						if path_arr_i == 0
+							
+							path_arr[0] = tnode
+							 
+						else
+							 
+							if path_arr[path_arr_i - 1][:node][:cmp] < 0
+								pp "-1 cmp < 0"
+								path_arr[path_arr_i - 1][:left] = tnode
+							else
+								pp "-1 cmp > 0"
+								path_arr[path_arr_i - 1][:right] = tnode
+							end
+							 
+						end
+						 
+						return
+						 
 					else
 						pp "rightleft is not red"
 						path_arr[path_arr_i][:node][:is_red] = true
