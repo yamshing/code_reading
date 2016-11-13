@@ -149,13 +149,13 @@ class RedBlackTree
 				#left node
 				pp "left node removed"
 				path_arr[path_arr_i][:left] =  path_arr[path_arr_i + 1]
+				tnode  = nil
 				 
 				if path_arr[path_arr_i][:node][:is_red]
 					pp "path is red"
 					
 					right = path_arr[path_arr_i][:right]
 					rightleft = right[:left]
-					tnode = nil
 
 					if rightleft && rightleft[:node][:is_red]
 						pp "rightleft is red"
@@ -169,6 +169,7 @@ class RedBlackTree
 						tnode = rotate_left(path_arr[path_arr_i])
 
 					end
+
 					if path_arr[path_arr_i - 1][:node][:cmp] < 0
 						pp "-1 cmp < 0"
 						path_arr[path_arr_i - 1][:left] = tnode
@@ -213,11 +214,21 @@ class RedBlackTree
 					else
 						pp "rightleft is not red"
 						path_arr[path_arr_i][:node][:is_red] = true
-						new_root = rotate_left(path_arr[path_arr_i])
-						path_arr[path_arr_i] = new_root
+						tnode = rotate_left(path_arr[path_arr_i])
+						path_arr[path_arr_i] = tnode
 					end
 					
 				end
+				 
+				if path_arr[path_arr_i - 1][:node][:cmp] < 0
+					pp "-1 cmp < 0"
+					path_arr[path_arr_i - 1][:left] = tnode
+				else
+					pp "-1 cmp > 0"
+					path_arr[path_arr_i - 1][:right] = tnode
+				end
+				return
+
 			else
 				#right node
 				pp "right node removed"

@@ -229,6 +229,32 @@ class TestSample < Test::Unit::TestCase
 		assert_equal "[[\"4○ \"], [\"3○ 6○ \"], [\"1○ 3.5○ \", \"5○ 7○ \"], [\"--\", \"--\", \"--\", \"--\"]]", rb.to_s()
 		 
 	end
+	def test_remove_7
+		 
+		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		nodes = [
+			{:node=> {:val=>2,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}, 
+			{:node=> {:val=>3,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>4,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>6,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>7,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>5.5,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			{:node=> {:val=>5.6,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+			#{:node=> {:val=>1.7,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil},
+		]
+		 
+		rb = RedBlackTree.new(root)
+		 
+		for node in nodes do
+			rb.insert(node)
+		end
+		 
+		rb.remove(nodes[4])
+		rb.print_all()
+		#assert_equal "[[\"4○ \"], [\"3○ 6○ \"], [\"1○ 3.5○ \", \"5○ 7○ \"], [\"--\", \"--\", \"--\", \"--\"]]", rb.to_s()
+		 
+	end
 end
 
 
