@@ -148,7 +148,7 @@ class TestSample < Test::Unit::TestCase
 		 
 		rb.remove(node3)
 		
-		#rb.print_all()
+		rb.print_all()
 		assert_equal "[[\"3.5○ \"], [\"2●  7○ \"], [\"1○ 2.5○ \", \"6●  -\"], [\"--\", \"--\", \"--\"]]", rb.to_s()
 		 
 	end

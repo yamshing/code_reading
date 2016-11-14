@@ -220,14 +220,7 @@ class RedBlackTree
 					
 				end
 				 
-				if path_arr[path_arr_i - 1][:node][:cmp] < 0
-					pp "-1 cmp < 0"
-					path_arr[path_arr_i - 1][:left] = tnode
-				else
-					pp "-1 cmp > 0"
-					path_arr[path_arr_i - 1][:right] = tnode
-				end
-				return
+				
 
 			else
 				#right node
