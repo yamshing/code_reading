@@ -55,7 +55,7 @@ class RedBlackTree
 					 
 					nodep_i = (path_arr_i)
 					 
-					#path_arr_i += 1
+					path_arr_i += 1
 					 
 					while path_arr[(path_arr_i)]
 						#pp "in while",path_arr[(path_arr_i)]
@@ -79,10 +79,14 @@ class RedBlackTree
 			# remove node is not the last node
 			#swap
 			is_red = path_arr[path_arr_i][:node][:is_red]
+			cmp = path_arr[path_arr_i][:node][:cmp]
+			 
 			path_arr[path_arr_i][:node][:is_red] = remove_node[:node][:is_red]
+			path_arr[path_arr_i][:node][:cmp] = remove_node[:node][:cmp]
 			path_arr[path_arr_i][:left] = remove_node[:left]
 			path_arr[path_arr_i][:right] = remove_node[:right]
 			remove_node[:node][:is_red] = is_red
+			remove_node[:node][:cmp] = cmp 
 			path_arr[nodep_i] = path_arr[path_arr_i]
 			path_arr[path_arr_i] = remove_node
 			 
@@ -138,6 +142,7 @@ class RedBlackTree
 		# remove node is black
 		#pp 'remove node', path_arr[path_arr_i]
 		#pp "path_arr", path_arr[path_arr_i]
+		 
 		 
 		path_arr[path_arr_i] = nil
 
@@ -224,16 +229,40 @@ class RedBlackTree
 
 			else
 				#right node
-				pp "right node removed"
-				 
+				pp "right node", path_arr[path_arr_i]
 				path_arr[path_arr_i][:right] =  path_arr[path_arr_i + 1]
 				 
 				left = path_arr[path_arr_i][:left]
 				 
-				pp "left node", left
 				if left[:node][:is_red]
 					pp "left is red"
-					#TODO
+					tnode = nil
+					leftright = left[:right] 
+					leftrightleft = nil
+					if leftright && leftright[:left]
+						leftrightleft = leftright[:left]
+					end
+						 
+					if leftrightleft && leftrightleft[:node][:is_red]
+						pp "leftrightleft is red TODO"
+					else
+						pp "leftrightleft is black"
+						leftright[:node][:is_red] = true
+						tnode = rotate_right(path_arr[path_arr_i])
+						tnode[:node][:is_red] = false
+					end
+					if path_arr_i == 0
+						path_arr[0] = tnode
+					else
+						if path_arr[path_arr_i - 1][:node][:cmp] < 0
+							pp "-1 cmp < 0"
+							path_arr[path_arr_i - 1][:left] = tnode
+						else
+							pp "-1 cmp > 0"
+							path_arr[path_arr_i - 1][:right] = tnode
+						end
+					end
+					return
 				elsif path_arr[path_arr_i][:node][:is_red]
 					pp "left is not red i node is red"
 					leftleft = left[:left]
@@ -248,7 +277,27 @@ class RedBlackTree
 					 
 				else
 					pp "left is not red i node is not red"
-					left[:node][:is_red] = true
+					leftleft = left[:left]
+					if leftleft[:node][:is_red]
+						leftleft[:node][:is_red] = false
+						tnode = rotate_right(path_arr[path_arr_i])
+						if path_arr_i == 0
+							path_arr[0] = tnode
+						else
+							if path_arr[path_arr_i - 1][:node][:cmp] < 0
+								pp "-1 cmp < 0"
+								path_arr[path_arr_i - 1][:left] = tnode
+							else
+								pp "-1 cmp > 0"
+								path_arr[path_arr_i - 1][:right] = tnode
+							end
+						end
+						 
+						return
+					else
+						left[:node][:is_red] = true
+					end
+						 
 				end
 			end
 			 
