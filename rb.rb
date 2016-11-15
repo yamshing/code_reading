@@ -127,6 +127,7 @@ class RedBlackTree
 						#pp path_arr[nodep_i - 1]
 						 
 					end
+					return
 				end
 			elsif nodep_i == 0
 				#only one node
