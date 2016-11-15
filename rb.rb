@@ -230,7 +230,7 @@ class RedBlackTree
 
 			else
 				#right node
-				pp "right node", path_arr[path_arr_i]
+				pp "right node"
 				path_arr[path_arr_i][:right] =  path_arr[path_arr_i + 1]
 				 
 				left = path_arr[path_arr_i][:left]
@@ -274,6 +274,7 @@ class RedBlackTree
 						 
 						left[:node][:is_red] = true
 						path_arr[path_arr_i][:node][:is_red] = false
+						return
 					end
 					 
 				else
