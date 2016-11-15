@@ -99,7 +99,7 @@ class TestSample < Test::Unit::TestCase
 		 
 		rb.remove(node1)
 		
-		rb.print_all()
+		#rb.print_all()
 
 		#assert_equal "[[\"1.5○ \"], [\"1○ 1.8○ \"], [\"--\", \"--\"]]", rb.to_s()
 		 
@@ -148,7 +148,7 @@ class TestSample < Test::Unit::TestCase
 		 
 		rb.remove(node3)
 		
-		rb.print_all()
+		#rb.print_all()
 		assert_equal "[[\"3.5○ \"], [\"2●  7○ \"], [\"1○ 2.5○ \", \"6●  -\"], [\"--\", \"--\", \"--\"]]", rb.to_s()
 		 
 	end
@@ -225,7 +225,7 @@ class TestSample < Test::Unit::TestCase
 		end
 		 
 		rb.remove(nodes[0])
-		rb.print_all()
+		#rb.print_all()
 		#assert_equal "[[\"4○ \"], [\"3○ 6○ \"], [\"1○ 3.5○ \", \"5○ 7○ \"], [\"--\", \"--\", \"--\", \"--\"]]", rb.to_s()
 		 
 	end

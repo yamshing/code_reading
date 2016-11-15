@@ -177,10 +177,8 @@ class RedBlackTree
 					end
 
 					if path_arr[path_arr_i - 1][:node][:cmp] < 0
-						pp "-1 cmp < 0"
 						path_arr[path_arr_i - 1][:left] = tnode
 					else
-						pp "-1 cmp > 0"
 						path_arr[path_arr_i - 1][:right] = tnode
 					end
 					return
@@ -206,10 +204,8 @@ class RedBlackTree
 						else
 							 
 							if path_arr[path_arr_i - 1][:node][:cmp] < 0
-								pp "-1 cmp < 0"
 								path_arr[path_arr_i - 1][:left] = tnode
 							else
-								pp "-1 cmp > 0"
 								path_arr[path_arr_i - 1][:right] = tnode
 							end
 							 
@@ -246,6 +242,7 @@ class RedBlackTree
 						 
 					if leftrightleft && leftrightleft[:node][:is_red]
 						pp "leftrightleft is red TODO"
+						#TODO
 					else
 						pp "leftrightleft is black"
 						leftright[:node][:is_red] = true
@@ -256,10 +253,8 @@ class RedBlackTree
 						path_arr[0] = tnode
 					else
 						if path_arr[path_arr_i - 1][:node][:cmp] < 0
-							pp "-1 cmp < 0"
 							path_arr[path_arr_i - 1][:left] = tnode
 						else
-							pp "-1 cmp > 0"
 							path_arr[path_arr_i - 1][:right] = tnode
 						end
 					end
@@ -287,10 +282,8 @@ class RedBlackTree
 							path_arr[0] = tnode
 						else
 							if path_arr[path_arr_i - 1][:node][:cmp] < 0
-								pp "-1 cmp < 0"
 								path_arr[path_arr_i - 1][:left] = tnode
 							else
-								pp "-1 cmp > 0"
 								path_arr[path_arr_i - 1][:right] = tnode
 							end
 						end
