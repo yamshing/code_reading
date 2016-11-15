@@ -242,7 +242,8 @@ class RedBlackTree
 						 
 					if leftrightleft && leftrightleft[:node][:is_red]
 						pp "leftrightleft is red TODO"
-						#TODO
+						
+					
 					else
 						pp "leftrightleft is black"
 						leftright[:node][:is_red] = true
@@ -263,8 +264,20 @@ class RedBlackTree
 					pp "left is not red i node is red"
 					leftleft = left[:left]
 					if leftleft && leftleft[:node][:is_red] 
-						pp "leftleft is red TODO"
-						#TODO
+						pp "leftleft is red "
+						tnode = nil
+						path_arr[path_arr_i][:node][:is_red] = false
+						left[:node][:is_red] = true
+						leftleft[:node][:is_red] = false
+
+						tnode = rotate_right(path_arr[path_arr_i])
+						if path_arr[path_arr_i - 1][:node][:cmp] < 0
+							path_arr[path_arr_i - 1][:left] = tnode
+						else
+							path_arr[path_arr_i - 1][:right] = tnode
+						end
+						 
+						return
 					else
 						 
 						left[:node][:is_red] = true
