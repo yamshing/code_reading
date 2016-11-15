@@ -267,7 +267,7 @@ class RedBlackTree
 					pp "left is not red i node is red"
 					leftleft = left[:left]
 					if leftleft && leftleft[:node][:is_red] 
-						pp "leftleft is red"
+						pp "leftleft is red TODO"
 						#TODO
 					else
 						 
