@@ -443,7 +443,8 @@ class RedBlackTree
 		 
 		@node_arr = []
 		 
-		print_rb(@root,0,'')
+		print_rb(@root,0,0)
+		pp @node_arr
 
 		@node_arr.each do |n|
 			pp n
@@ -481,24 +482,29 @@ class RedBlackTree
 			 
 		end
 		 
-		left_node_str =  '-'
-		right_node_str = '-'
+		left_node_str =  ''
+		right_node_str = ''
+		node_pos = pos
 
 		if root[:left]
 			 
-			left_node_str = print_rb(root[:left], level + 1, "")
+			left_node_str = print_rb(root[:left], level + 1, 2 * node_pos)
 			 
 		end
 		 
 		if root[:right]
 			 
-			right_node_str = print_rb(root[:right], level + 1, "#")
+			right_node_str = print_rb(root[:right], level + 1, 2 * node_pos + 1)
+			node_pos += 1
 			 
 		end
 		
-		@node_arr[level + 1] ||= []
-		@node_arr[level + 1].push "#{left_node_str}"
-		@node_arr[level + 1].push "#{right_node_str}"
+		pp "lv #{level}"
+		pp "pos #{pos} #{left_node_str} : #{right_node_str}"
+		 
+		@node_arr[level + 1] ||= [''] * (2 ** (level + 1))
+		@node_arr[level + 1][2 * pos] =  "#{left_node_str}"
+		@node_arr[level + 1][2 * pos + 1] = "#{right_node_str}"
 		 
 		node_str
 	end

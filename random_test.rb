@@ -10,7 +10,7 @@ while num_arr.size < 10 do
 	end
 end
  
-num_arr = [26, 34, 36, 20, 22, 49, 25, 17, 18, 24]
+#num_arr = [26, 34, 36, 20, 22, 49, 25, 17, 18, 24]
  
 node_template = {:node=> {:val=>0,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
 	 
