@@ -12,7 +12,8 @@ while num_arr.size < 10 do
 end
  
 #num_arr = [26, 34, 36, 20, 22, 49, 25, 17, 18, 24]
-num_arr = [36, 35, 5, 8, 42, 16, 29, 11, 47, 17]
+#num_arr = [36, 35, 5, 8, 42, 16, 29, 11, 47, 17]
+num_arr =[12, 37, 32, 18, 42, 4, 29, 5, 40, 23] 
 pp num_arr
 
  
@@ -27,7 +28,7 @@ for num in num_arr
 	rb.insert node
 end
 
-for del_num in (0..3)
+for del_num in (0..1)
 	 
 	pp "del!! #{del_num} #{node_arr[del_num]}"
 	rb.remove node_arr[del_num]
