@@ -82,13 +82,20 @@ class RedBlackTree
 			#swap
 			is_red = path_arr[path_arr_i][:node][:is_red]
 			cmp = path_arr[path_arr_i][:node][:cmp]
+			left = path_arr[path_arr_i][:left]
+			right = path_arr[path_arr_i][:right]
 			 
+			pp "swap #{path_arr[path_arr_i]}, #{remove_node}"
 			path_arr[path_arr_i][:node][:is_red] = remove_node[:node][:is_red]
 			path_arr[path_arr_i][:node][:cmp] = remove_node[:node][:cmp]
 			path_arr[path_arr_i][:left] = remove_node[:left]
 			path_arr[path_arr_i][:right] = remove_node[:right]
+			 
 			remove_node[:node][:is_red] = is_red
 			remove_node[:node][:cmp] = cmp 
+			remove_node[:left] = left
+			remove_node[:right] = right
+			 
 			path_arr[nodep_i] = path_arr[path_arr_i]
 			path_arr[path_arr_i] = remove_node
 			 
@@ -151,7 +158,7 @@ class RedBlackTree
 
 		path_arr_i -= 1
 
-		while(path_arr_i >= 0) do
+		while(path_arr_i > 0) do
 			 
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
@@ -295,7 +302,7 @@ class RedBlackTree
 				else
 					pp "left is not red i node is not red"
 					leftleft = left[:left]
-					if leftleft[:node][:is_red]
+					if leftleft && leftleft[:node][:is_red]
 						leftleft[:node][:is_red] = false
 						tnode = rotate_right(path_arr[path_arr_i])
 						if path_arr_i == 0
@@ -309,7 +316,7 @@ class RedBlackTree
 						end
 						 
 						return
-					else
+					elsif leftleft
 						left[:node][:is_red] = true
 					end
 						 
@@ -452,7 +459,7 @@ class RedBlackTree
 	end
 
 	def pretty_print_all()
-		line_w = 150
+		line_w = 200
 		@node_arr = []
 		initscr
 		start_color
