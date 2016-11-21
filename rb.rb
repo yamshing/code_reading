@@ -2,7 +2,9 @@
 # red black tree algorithm from rb.h of libc in freebsd
 # REF:yamshing.hatenablog.com/entry/2015/09/30/205603
 require('pp')
-
+require 'ncursesw'
+include Ncurses::Namespace
+ 
 class RedBlackTree
 	def initialize(root)
 		@root = root 
@@ -446,6 +448,26 @@ class RedBlackTree
 		@node_arr.each do |n|
 			pp n
 		end
+	end
+
+	def pretty_print_all()
+		line_w = 150
+		@node_arr = []
+		initscr
+		raw
+		 
+		print_rb(@root,0,'')
+
+		@node_arr.each_with_index do |row, i|
+			unit = line_w /(2 ** (i + 1))
+			margin = unit / 2
+			row.each_with_index do |node,j|
+				mvaddstr(i, margin + unit * j, "#{node}");	
+			end
+		end
+		refresh
+		getch
+		endwin
 	end
 	 
 	def print_rb(root, level, pos)
