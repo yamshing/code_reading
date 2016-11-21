@@ -427,7 +427,7 @@ class RedBlackTree
 
 		color = '○ '
 		if node[:node][:is_red]
-			color = '●  '
+			color = '● '
 		end
 		
 		"#{node[:node][:val]}#{color}"
@@ -455,14 +455,23 @@ class RedBlackTree
 		line_w = 150
 		@node_arr = []
 		initscr
+		start_color
 		raw
+		init_pair(1,COLOR_RED,COLOR_BLACK)
+		init_pair(2,COLOR_WHITE,COLOR_BLACK)
 		 
-		print_rb(@root,0,'')
+		print_rb(@root,0,0)
 
 		@node_arr.each_with_index do |row, i|
 			unit = line_w /(2 ** (i + 1))
 			margin = unit / 2
 			row.each_with_index do |node,j|
+
+				if node.match /●/
+					attron(COLOR_PAIR(1))
+				else
+					attron(COLOR_PAIR(2))
+				end
 				mvaddstr(i, margin + unit * j, "#{node}");	
 			end
 		end
@@ -482,8 +491,8 @@ class RedBlackTree
 			 
 		end
 		 
-		left_node_str =  ''
-		right_node_str = ''
+		left_node_str =  '.'
+		right_node_str = '.'
 		node_pos = pos
 
 		if root[:left]
@@ -499,10 +508,10 @@ class RedBlackTree
 			 
 		end
 		
-		pp "lv #{level}"
-		pp "pos #{pos} #{left_node_str} : #{right_node_str}"
+		#pp "lv #{level}"
+		#pp "pos #{pos} #{left_node_str} : #{right_node_str}"
 		 
-		@node_arr[level + 1] ||= [''] * (2 ** (level + 1))
+		@node_arr[level + 1] ||= ['.'] * (2 ** (level + 1))
 		@node_arr[level + 1][2 * pos] =  "#{left_node_str}"
 		@node_arr[level + 1][2 * pos + 1] = "#{right_node_str}"
 		 

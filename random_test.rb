@@ -22,4 +22,4 @@ for num in num_arr
 	rb.insert node
 end
 
-rb.print_all()
+rb.pretty_print_all()
