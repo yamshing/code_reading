@@ -497,11 +497,11 @@ class RedBlackTree
 		end
 		
 		@node_arr[level + 1] ||= []
-		@node_arr[level + 1].push "#{left_node_str}#{right_node_str}"
+		@node_arr[level + 1].push "#{left_node_str}"
+		@node_arr[level + 1].push "#{right_node_str}"
 		 
 		node_str
 	end
-	 
 end
 
 

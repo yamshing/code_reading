@@ -9,11 +9,14 @@ while num_arr.size < 10 do
 		num_arr.push num
 	end
 end
-
+ 
+num_arr = [26, 34, 36, 20, 22, 49, 25, 17, 18, 24]
+ 
 node_template = {:node=> {:val=>0,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
 	 
 root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
 rb = RedBlackTree.new(root)
+ 
 for num in num_arr 
 	node = {:node=> {:val=>num,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
 	rb.insert node
