@@ -222,7 +222,7 @@ class RedBlackTree
 						 
 						return
 						 
-					else
+					elsif rightleft
 						pp "rightleft is not red"
 						path_arr[path_arr_i][:node][:is_red] = true
 						tnode = rotate_left(path_arr[path_arr_i])
