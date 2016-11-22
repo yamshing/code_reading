@@ -333,6 +333,9 @@ class RedBlackTree
 			path_arr_i -= 1
 			 
 		end
+		 
+		@root = path_arr[0]
+
 	end
 	 
 	def insert(insert_node)
