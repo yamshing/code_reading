@@ -4,7 +4,7 @@ require_relative('rb')
 num_arr = []
 node_arr = []
 random = Random.new
-while num_arr.size < 10 do
+while num_arr.size < 20 do
 	num = random.rand(2...50)
 	if num_arr.index(num) == nil
 		num_arr.push num
@@ -17,7 +17,7 @@ end
 #num_arr = [2,3]
 #num_arr = [12, 32, 18, 42, 4, 29, 5, 40, 23]
 #num_arr = [32, 18, 42, 4, 29, 5, 40, 23]
-num_arr = [45, 33, 20, 29, 8, 44, 31, 42, 25, 9] 
+#num_arr = [45, 33, 20, 29, 8, 44, 31, 42, 25, 9] 
 pp num_arr
 
  
