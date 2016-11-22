@@ -307,6 +307,57 @@ class TestSample < Test::Unit::TestCase
 		assert_equal "[[\"4○ \"], [\"2○ \", \"6.5○ \"], [\"1○ \", \"3○ \", \"6● \", \"6.6○ \"], [\".\", \".\", \".\", \".\", \"5○ \", \"6.4○ \", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]", rb.to_s()
 		 
 	end
+	 def test_remove_10
+		 
+		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		 
+		num_arr = [12, 32, 18, 42, 4, 29, 5, 40, 23]
+		node_arr = []
+		 
+		rb = RedBlackTree.new(root)
+		 
+		for num in num_arr 
+			node = {:node=> {:val=>num,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+			node_arr.push node
+			rb.insert node
+		end
+		 
+		rb.remove node_arr[0]
+		rb.remove node_arr[1]
+		rb.remove node_arr[2]
+		rb.remove node_arr[3]
+		rb.remove node_arr[4]
+
+		#rb.pretty_print_all()
+		assert_equal "[[\"23○ \"], [\"5○ \", \"40○ \"], [\"1● \", \".\", \"29● \", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]", rb.to_s()
+		 
+	end
+	def test_remove_11
+		 
+		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		 
+		num_arr = [32, 18, 42, 4, 29, 5, 40, 23]
+		node_arr = []
+		 
+		rb = RedBlackTree.new(root)
+		 
+		for num in num_arr 
+			node = {:node=> {:val=>num,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+			node_arr.push node
+			rb.insert node
+		end
+		 
+		rb.remove node_arr[0]
+		rb.remove node_arr[1]
+		rb.remove node_arr[2]
+		rb.remove node_arr[3]
+		rb.remove node_arr[4]
+
+		#rb.pretty_print_all()
+		assert_equal "[[\"23○ \"], [\"5○ \", \"40○ \"], [\"1● \", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]", rb.to_s()
+		 
+	end
+	 
 end
 
 

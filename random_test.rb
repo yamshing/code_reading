@@ -15,8 +15,8 @@ end
 #num_arr = [36, 35, 5, 8, 42, 16, 29, 11, 47, 17]
 #num_arr =[12, 37, 32, 18, 42, 4, 29, 5, 40, 23] 
 num_arr = [2,3]
-num_arr = [12, 32, 18, 42, 4, 29, 5, 40, 23]
-#num_arr = [32, 18, 42, 4, 29, 5, 40, 23]
+#num_arr = [12, 32, 18, 42, 4, 29, 5, 40, 23]
+num_arr = [32, 18, 42, 4, 29, 5, 40, 23]
 pp num_arr
 
  
@@ -32,10 +32,10 @@ for num in num_arr
 end
  
 rb.remove node_arr[0]
-#rb.remove node_arr[1]
-#rb.remove node_arr[2]
-#rb.remove node_arr[3]
-#rb.remove node_arr[4]
+rb.remove node_arr[1]
+rb.remove node_arr[2]
+rb.remove node_arr[3]
+rb.remove node_arr[4]
 
 #for del_num in (0..2)
 #	 
