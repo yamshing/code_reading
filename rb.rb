@@ -163,10 +163,10 @@ class RedBlackTree
 
 		path_arr_i -= 1
 
-		pp 'before while',path_arr
+		#pp 'before while',path_arr
 		while(path_arr_i >= 0) do
 			 
-			pp 'while in', path_arr[path_arr_i]
+			#pp 'while in', path_arr[path_arr_i]
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
 				pp "left node removed"
@@ -197,6 +197,8 @@ class RedBlackTree
 					else
 						path_arr[path_arr_i - 1][:right] = tnode
 					end
+
+					@root = path_arr[0]
 					return
 					 
 				else
@@ -227,6 +229,7 @@ class RedBlackTree
 							 
 						end
 						 
+						@root = path_arr[0]
 						return
 						 
 					#elsif rightleft
@@ -281,6 +284,7 @@ class RedBlackTree
 							path_arr[path_arr_i - 1][:right] = tnode
 						end
 					end
+					@root = path_arr[0]
 					return
 				elsif path_arr[path_arr_i][:node][:is_red]
 					pp "left is not red i node is red"
@@ -299,11 +303,14 @@ class RedBlackTree
 							path_arr[path_arr_i - 1][:right] = tnode
 						end
 						 
+						@root = path_arr[0]
 						return
 					else
 						 
 						left[:node][:is_red] = true
 						path_arr[path_arr_i][:node][:is_red] = false
+
+						@root = path_arr[0]
 						return
 					end
 					 
@@ -323,6 +330,7 @@ class RedBlackTree
 							end
 						end
 						 
+						@root = path_arr[0]
 						return
 						 
 					else

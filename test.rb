@@ -357,6 +357,32 @@ class TestSample < Test::Unit::TestCase
 		assert_equal "[[\"23○ \"], [\"5○ \", \"40○ \"], [\"1● \", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]", rb.to_s()
 		 
 	end
+	def test_remove_12
+		 
+		root = {:node=> {:val=>1,:is_red=>false,:cmp=>0},:left=>nil, :right=>nil}
+		 
+		num_arr = [45, 33, 20, 29, 8, 44, 31, 42, 25, 9] 
+		node_arr = []
+		 
+		rb = RedBlackTree.new(root)
+		 
+		for num in num_arr 
+			node = {:node=> {:val=>num,:is_red=>true,:cmp=>0},:left=>nil, :right=>nil}
+			node_arr.push node
+			rb.insert node
+		end
+		 
+		rb.remove node_arr[0]
+		rb.remove node_arr[1]
+		rb.remove node_arr[2]
+		rb.remove node_arr[3]
+		rb.remove node_arr[4]
+
+		#rb.pretty_print_all()
+		assert_equal "[[\"42○ \"], [\"25● \", \"44○ \"], [\"9○ \", \"31○ \", \".\", \".\"], [\"1● \", \".\", \".\", \".\", \".\", \".\", \".\", \".\"], [\".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\", \".\"]]", rb.to_s()
+		 
+	end
+	 
 	 
 end
 
