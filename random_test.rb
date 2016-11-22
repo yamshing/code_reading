@@ -28,7 +28,7 @@ for num in num_arr
 	rb.insert node
 end
 
-for del_num in (0..1)
+for del_num in (0..2)
 	 
 	pp "del!! #{del_num} #{node_arr[del_num]}"
 	rb.remove node_arr[del_num]

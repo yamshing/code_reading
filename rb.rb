@@ -100,7 +100,10 @@ class RedBlackTree
 			path_arr[path_arr_i] = remove_node
 			 
 			if nodep_i == 0
-				root = path_arr[nodep_i]
+				@root = path_arr[nodep_i]
+				@root[:right] = right
+				path_arr[0] = @root
+
 			else
 				if path_arr[nodep_i - 1][:node][:cmp] < 0
 					path_arr[nodep_i - 1][:left] = path_arr[nodep_i]
@@ -158,8 +161,10 @@ class RedBlackTree
 
 		path_arr_i -= 1
 
-		while(path_arr_i > 0) do
+		pp 'before while',path_arr
+		while(path_arr_i >= 0) do
 			 
+			pp 'while in'
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
 				pp "left node removed"
@@ -235,7 +240,7 @@ class RedBlackTree
 
 			else
 				#right node
-				pp "right node"
+				pp "right node",path_arr
 				path_arr[path_arr_i][:right] =  path_arr[path_arr_i + 1]
 				 
 				left = path_arr[path_arr_i][:left]
