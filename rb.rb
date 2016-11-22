@@ -454,7 +454,7 @@ class RedBlackTree
 	 
 	def to_s()
 		@node_arr = []
-		print_rb(@root,0,'')
+		print_rb(@root,0,0)
 		@node_arr.to_s()
 	end
 	 
