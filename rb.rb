@@ -84,6 +84,8 @@ class RedBlackTree
 			cmp = path_arr[path_arr_i][:node][:cmp]
 			left = path_arr[path_arr_i][:left]
 			right = path_arr[path_arr_i][:right]
+			remove_node_right = remove_node[:right]
+			
 			 
 			pp "swap #{path_arr[path_arr_i]}, #{remove_node}"
 			path_arr[path_arr_i][:node][:is_red] = remove_node[:node][:is_red]
@@ -101,7 +103,7 @@ class RedBlackTree
 			 
 			if nodep_i == 0
 				@root = path_arr[nodep_i]
-				@root[:right] = right
+				@root[:right] = remove_node_right
 				path_arr[0] = @root
 
 			else
