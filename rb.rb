@@ -166,7 +166,7 @@ class RedBlackTree
 		pp 'before while',path_arr
 		while(path_arr_i >= 0) do
 			 
-			pp 'while in'
+			pp 'while in', path_arr[path_arr_i]
 			if path_arr[path_arr_i][:node][:cmp] < 0
 				#left node
 				pp "left node removed"
@@ -229,7 +229,8 @@ class RedBlackTree
 						 
 						return
 						 
-					elsif rightleft
+					#elsif rightleft
+					else
 						pp "rightleft is not red"
 						path_arr[path_arr_i][:node][:is_red] = true
 						tnode = rotate_left(path_arr[path_arr_i])
@@ -323,7 +324,8 @@ class RedBlackTree
 						end
 						 
 						return
-					elsif leftleft
+						 
+					else
 						left[:node][:is_red] = true
 					end
 						 

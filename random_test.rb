@@ -32,10 +32,10 @@ for num in num_arr
 end
  
 rb.remove node_arr[0]
-rb.remove node_arr[1]
-rb.remove node_arr[2]
+#rb.remove node_arr[1]
+#rb.remove node_arr[2]
 #rb.remove node_arr[3]
-rb.remove node_arr[4]
+#rb.remove node_arr[4]
 
 #for del_num in (0..2)
 #	 
